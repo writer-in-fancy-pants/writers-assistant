@@ -1,0 +1,43 @@
+# Lore Engine Configuration
+
+llm:
+  backend: api
+  codex_bin_path: codex
+  model: hosted-llm
+  planner_max_tokens: 1000
+  writer_max_tokens: 3000
+generation:
+  target_word_count_min: null
+  target_word_count_max: null
+  use_plot_first: true
+  plot_first_start_tick: 2
+  plot_beats_ahead: 5
+  plot_regeneration_threshold: 2
+  verify_beat_execution: true
+  allow_beat_skip: false
+  fallback_to_reactive: false
+paths:
+  raw_input: "data/raw"
+  entities_dir: "data/entities"
+  output_dir: "data/output"
+  chroma_db: "data/output/chroma_db"
+  knowledge_graph_json: "data/output/knowledge_graph.json"
+  knowledge_graph_viz: "data/output/knowledge_graph.html"
+extraction:
+  chunk_size: 4000          # Characters per chunk when processing large files
+  chunk_overlap: 400
+  merge_threshold: 0.85     # Similarity threshold for merging duplicate entities
+
+vector_db:
+  collection_name: "lore_engine"
+  embedding_model: "all-MiniLM-L6-v2"
+  chunk_size: 800           # Tokens per chunk for embedding
+  chunk_overlap: 100
+  n_results: 8              # Default number of results to retrieve
+
+generation:
+  context_chunks: 10        # Vector DB chunks to pull for generation
+  graph_depth: 2            # Relationship hops for graph context
+  temperature: 1.0
+  chapter_min_words: 1200
+  chapter_max_words: 3000
